@@ -2,6 +2,7 @@
 
 ### Multiples of 3 and 5
 
+##### Ruby
 ```ruby
   def sum_mult(n)
     sum = 0
@@ -10,6 +11,7 @@
   end
 ```
 
+##### Javascript
 ```javascript
   let sumMult = num => {
     let sum = 0;
@@ -26,6 +28,7 @@
 
 ### Even Fibonacci Numbers
 
+##### Ruby
 ```ruby
   def fib_even_sum(n)
     fib_arr = [1, 1]
@@ -40,6 +43,7 @@
   end
 ```
 
+##### Javascript
 ```javascript
   const fibEvenSum = num => {
     let fibArr = [1, 1];
@@ -64,8 +68,8 @@
 
 ### Largest Prime Factorization
 
-##### Note: The Javascript version is slow and needs to be refactored.
 
+##### Ruby
 ```ruby
   require 'prime'
 
@@ -75,6 +79,9 @@
   end
 ```
 
+Note: The Javascript version is slow and needs to be refactored.
+
+##### Javascript
 ```javascript
   const largestPrimeFactor = num => {
     const isPrime = number => {
