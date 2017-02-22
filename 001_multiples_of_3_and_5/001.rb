@@ -5,9 +5,7 @@
 
 def sum_mult(n)
   sum = 0
-
   (3...n).each { |num| sum += num if num % 3 == 0 || num % 5 == 0 }
-
   sum
 end
 
