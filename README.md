@@ -190,3 +190,39 @@ Note: The Javascript version is slow and needs to be refactored.
     }
   };
 ```
+
+### 5. Sum Square Difference
+
+##### Ruby
+```ruby
+  def sum_square_difference(ceiling)
+    sum_of_squares = 0
+    square_of_sums = 0
+
+    (1..ceiling).each do |num|
+      sum_of_squares += (num**2)
+      square_of_sums += num
+    end
+
+    square_of_sums = (square_of_sums**2)
+
+    square_of_sums - sum_of_squares
+  end
+```
+
+##### Javascript
+```javascript
+  const sumSqaureDifference = ceiling => {
+    let sumOfSquares = 0;
+    let squareOfSums = 0;
+
+    for (let i = 1; i <= ceiling; i++) {
+      sumOfSquares += Math.pow(i, 2);
+      squareOfSums += i;
+    }
+
+    squareOfSums = Math.pow(squareOfSums, 2);
+
+    return squareOfSums - sumOfSquares;
+  };
+```
