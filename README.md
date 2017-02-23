@@ -68,6 +68,7 @@
 
 ### Largest Prime Factorization
 
+Note: The Javascript version is slow and needs to be refactored.
 
 ##### Ruby
 ```ruby
@@ -78,8 +79,6 @@
     prime_factors.sort.last
   end
 ```
-
-Note: The Javascript version is slow and needs to be refactored.
 
 ##### Javascript
 ```javascript
