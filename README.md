@@ -1,6 +1,6 @@
 # Ruby and Javascript Solutions to Project Euler Questions
 
-### Multiples of 3 and 5
+### 1. Multiples of 3 and 5
 
 ##### Ruby
 ```ruby
@@ -26,7 +26,7 @@
   };
 ```
 
-### Even Fibonacci Numbers
+### 2. Even Fibonacci Numbers
 
 ##### Ruby
 ```ruby
@@ -66,7 +66,7 @@
   };
 ```
 
-### Largest Prime Factorization
+### 3. Largest Prime Factorization
 
 Note: The Javascript version is slow and needs to be refactored.
 
@@ -95,6 +95,98 @@ Note: The Javascript version is slow and needs to be refactored.
       if (num % i === 0 && isPrime(i)) {
         return i;
       }
+    }
+  };
+```
+
+### 4. Largest Palindrome Product
+
+##### Ruby
+```ruby
+  def largest_palindrome_product(ceiling)
+    largest_palindrome = 0
+
+    ceiling.downto(ceiling / 2) do |num|
+      multiplier = num
+
+      until multiplier <= num / 2
+        product = num * multiplier
+
+        if product.to_s == product.to_s.reverse && product > largest_palindrome
+          largest_palindrome = product
+        end
+
+        multiplier -= 1
+      end
+    end
+
+    largest_palindrome
+  end
+```
+
+##### Javascript
+```javascript
+  const largestPalindromeProduct = ceiling => {
+    let largestPalindrome = 0;
+
+    for (let i = ceiling; i > (ceiling / 2); i--) {
+      let multiplier = i;
+
+      while (multiplier > i / 2) {
+        let product = i * multiplier;
+        let productArray = product.toString().split('');
+
+        if (productArray.join('') === productArray.reverse().join('')){
+          if (product > largestPalindrome){
+            largestPalindrome = product;
+          }
+        }
+        multiplier--;
+      }
+    }
+
+    return largestPalindrome;
+  };
+```
+
+### 5. Smallest Multiple
+
+##### Ruby
+```ruby
+  def smallest_multiple(ceiling)
+    count = ceiling
+
+    loop do
+      count += ceiling
+      divisible = true
+
+      ceiling.downto(1) do |num|
+        if count % num != 0
+          divisible = false
+          next
+        end
+      end
+
+      return count if divisible
+    end
+  end
+```
+
+##### Javascript
+```javascript
+  const smallestMultiple = ceiling => {
+    for (let i = ceiling; i >= ceiling; i += ceiling ) {
+      let divisible = true;
+
+      for (let j = 1; j <= ceiling; j++) {
+
+        if (i % j !== 0) {
+          divisible = false;
+          continue;
+        }
+      }
+
+      if (divisible) return i;
     }
   };
 ```
