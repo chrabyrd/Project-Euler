@@ -331,3 +331,49 @@ Note: The Javascript version is slow and needs to be refactored.
     }
   };
 ```
+
+### 10. Summation of Primes
+
+Note: The Javascript version is slow and needs to be refactored.
+
+##### Ruby
+```ruby
+  require 'prime'
+
+  def sum_of_primes(upper_bound)
+    count = 0
+    sum = 0
+
+    while count < upper_bound
+      sum += count if count.prime?
+      count += 1
+    end
+
+    sum
+  end
+```
+
+##### Javascript
+```javascript
+  const sumOfPrimes = upperBound => {
+    let primeArr = [2];
+    let primeSum = 2;
+
+    for (let i = 3; i >= 0; i++) {
+      let prime = true;
+
+      primeArr.forEach(num => {
+        if (i % num === 0) {
+          prime = false;
+        }
+      });
+
+      if (prime) {
+        primeSum += i;
+        primeArr.push(i);
+      }
+
+      if (i === upperBound) return primeSum;
+    }
+  };
+```
