@@ -296,3 +296,38 @@ Note: The Javascript version is slow and needs to be refactored.
     return largest;
   };
 ```
+
+### 9. Special Pythagorean Triplet
+
+##### Ruby
+```ruby
+  def special_triplet(set_sum)
+    (1..(set_sum / 2)).each do |num1|
+      (num1..(set_sum / 2)).each do |num2|
+
+        sum_squares = Math.sqrt(num1**2 + num2**2)
+
+        if sum_squares % 1 == 0 && (num1 + num2 + sum_squares.to_i == 1000)
+          return num1 * num2 * sum_squares.to_i
+        end
+
+      end
+    end
+  end
+```
+
+##### Javascript
+```javascript
+  const specialTriplet = setSum => {
+    for (let i = 0; i < (setSum / 2); i++) {
+      for (let j = i; j < (setSum / 2); j++) {
+
+        let sumSquares = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+
+        if (sumSquares % 1 === 0 && (i + j + sumSquares === 1000)) {
+          return i * j * sumSquares;
+        }
+      }
+    }
+  };
+```
