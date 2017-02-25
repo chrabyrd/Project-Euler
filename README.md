@@ -265,3 +265,34 @@ Note: The Javascript version is slow and needs to be refactored.
     }
   };
 ```
+
+### 8. Largest Product in a Series
+
+##### Ruby
+```ruby
+  def largest_product(num_arr, range_size)
+    largest = 0
+
+    num_arr.each_cons(range_size) do |arr|
+      largest = arr.reduce(:*) if arr.reduce(:*) > largest
+    end
+
+    largest
+  end
+```
+
+##### Javascript
+```javascript
+  const largestProduct = (arr, rangeSize) => {
+    let largest = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+      let product = arr.slice(i, i + rangeSize)
+        .reduce((acc, num) => acc * num);
+
+      if (product > largest) { largest = product; }
+    }
+
+    return largest;
+  };
+```
