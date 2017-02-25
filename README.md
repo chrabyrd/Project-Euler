@@ -191,7 +191,7 @@ Note: The Javascript version is slow and needs to be refactored.
   };
 ```
 
-### 5. Sum Square Difference
+### 6. Sum Square Difference
 
 ##### Ruby
 ```ruby
@@ -224,5 +224,44 @@ Note: The Javascript version is slow and needs to be refactored.
     squareOfSums = Math.pow(squareOfSums, 2);
 
     return squareOfSums - sumOfSquares;
+  };
+```
+
+### 7. 10001st Prime
+
+##### Ruby
+```ruby
+  require 'prime'
+
+  def nth_prime(n)
+    Prime.first(n).last
+  end
+```
+
+##### Javascript
+```javascript
+  const nthPrime = n => {
+    let primeArr = [2];
+
+    if (n === 1) return 2;
+
+    for (let i = 3; i >= 0; i++) {
+      let prime = true;
+
+      primeArr.forEach(num => {
+        if (i % num === 0) {
+          prime = false;
+        }
+      });
+
+      if (prime) {
+        if (primeArr.length === n - 1) {
+          return i;
+        } else {
+          primeArr.push(i);
+        }
+      }
+
+    }
   };
 ```
