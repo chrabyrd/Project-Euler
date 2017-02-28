@@ -377,3 +377,88 @@ Note: The Javascript version is slow and needs to be refactored.
     }
   };
 ```
+
+### 11. Largest Product in a Grid
+
+##### Ruby
+```ruby
+  def largest_cons_product(array, length)
+    largest_product = 0
+
+    array.each_with_index do |arr, outer_idx|
+      # Horizontal
+      arr.each_cons(length) do |set|
+        product = set.reduce(:*)
+        largest_product = product if product > largest_product
+      end
+      # Others
+      arr.each_index do |inner_idx|
+        vertical_product = 1
+        right_diagonal = 1
+        left_diagonal = 1
+
+        if array[outer_idx + length - 1]
+
+          (0...length).each do |num|
+            vertical_product *= array[outer_idx + num][inner_idx]
+
+            if array[outer_idx + length - 1][inner_idx + length - 1]
+              right_diagonal *= array[outer_idx + num][inner_idx + num]
+            end
+
+            if array[outer_idx + length - 1][inner_idx - length - 1]
+              left_diagonal *= array[outer_idx + num][inner_idx - num]
+            end
+          end
+        end
+
+        return_value = [vertical_product, right_diagonal, left_diagonal].sort.last
+        largest_product = return_value if return_value > largest_product
+      end
+
+    end
+
+    largest_product
+  end
+```
+
+##### Javascript
+```javascript
+  const largestConstantProduct = (array, length) => {
+    let largestProduct = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array.length; j++) {
+        let vertical = 1;
+        let leftDiag = 1;
+        let rightDiag = 1;
+
+        let horizontal = array[i].slice(j, j + length)
+          .reduce(function(acc, prod) {
+            return acc * prod;
+          });
+
+        for (let k = 0; k < length; k++) {
+          if (array[i + length - 1]) {
+            vertical *= array[i + k][j];
+
+            if (array[i + length - 1][j - length - 1]) {
+              leftDiag *= array[i + k][j - k];
+            }
+
+            if (array[i + length - 1][j + length - 1]) {
+              rightDiag *= array[i + k][j + k];
+            }
+          }
+        }
+
+        let largest = Math.max(horizontal, vertical, leftDiag, rightDiag);
+
+        if (largest > largestProduct) {largestProduct = largest;}
+
+      }
+    }
+
+    return largestProduct;
+  };
+```
