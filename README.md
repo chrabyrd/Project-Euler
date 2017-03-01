@@ -462,3 +462,48 @@ Note: The Javascript version is slow and needs to be refactored.
     return largestProduct;
   };
 ```
+
+### 12. Highly Divisible Triangular Number
+
+##### Ruby
+```ruby
+  def triangle_number_value(num_of_divisors)
+    return 1 if num_of_divisors == 1
+    count = 1
+    triangle_num = 0
+
+    loop do
+      divisors = 0
+      triangle_num += count
+      count += 1
+
+      (1..Math.sqrt(triangle_num)).each do |num|
+        if triangle_num % num == 0
+          divisors += 2
+        end
+      end
+
+      return triangle_num if divisors > num_of_divisors
+    end
+  end
+```
+
+##### Javascript
+```javascript
+  const triangleNumberValue = numDivisors => {
+    if (numDivisors === 1) return 1;
+
+    let triangleNum = 0;
+
+    for (let i = 1; i > 0; i++) {
+      triangleNum += i;
+      let divisors = 0;
+
+      for (let j = 1; j <= Math.sqrt(triangleNum); j++) {
+        if (triangleNum % j === 0) divisors += 2;
+      }
+
+      if (divisors > numDivisors) return triangleNum;
+    }
+  };
+```
