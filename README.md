@@ -507,3 +507,33 @@ Note: The Javascript version is slow and needs to be refactored.
     }
   };
 ```
+
+### 13. Large Sum
+
+##### Ruby
+```ruby
+  def large_sum(num_string)
+    total = 0
+    num_arr = num_string.chars.select { |str| ("0".."9").cover?(str) }
+    total += num_arr.shift(50).join.to_i until num_arr.empty?
+
+    total.to_s.slice(0, 10).to_i
+  end
+```
+
+##### Javascript
+```javascript
+  const largeSum = string => {
+    let total = 0;
+
+    const stringArray = string.split('').filter(function(str){
+      return str === "0" ? true : parseInt(str);
+    });
+
+    for (let i = 0; i < stringArray.length; i += 50) {
+      total += parseInt(stringArray.slice(i, (i + 50)).join(''));
+    }
+
+    return `${total}`.slice(0, 11).split('.').join('');
+  };
+```
